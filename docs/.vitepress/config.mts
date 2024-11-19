@@ -87,6 +87,8 @@ export default defineConfig({
 
     sidebar: autoSidebar(),
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/lee-holden/vitepress-blog-template' },
+    ],
   },
 })
