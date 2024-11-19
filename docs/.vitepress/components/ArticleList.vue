@@ -18,7 +18,7 @@ const list = posts
     return rest
   })
 const jump = (path: string) => {
-  router.go(path)
+  router.go('vitepress-template-blog' + path)
 }
 </script>
 

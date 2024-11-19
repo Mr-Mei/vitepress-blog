@@ -19,6 +19,7 @@ const autoSidebar = () => {
 }
 
 export default defineConfig({
+  base: '/vitepress-template-blog/',
   title: '山不让尘，川不辞盈',
   description: 'A VitePress Site',
   vite: {
