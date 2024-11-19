@@ -6,6 +6,9 @@ import { useRoute } from 'vitepress'
 import { inBrowser } from 'vitepress'
 import busuanzi from 'busuanzi.pure.js'
 import './styles/global.css'
+import 'viewerjs/dist/viewer.min.css'
+import imageViewer from 'vitepress-plugin-image-viewer'
+import vImageViewer from 'vitepress-plugin-image-viewer/lib/vImageViewer.vue'
 import MyLayout from './MyLayout.vue'
 import ArticleHeader from '../components/ArticleHeader.vue'
 
@@ -52,6 +55,7 @@ export default {
   Layout: NaiveUIProvider,
   enhanceApp: ({ app, router }) => {
     app.component('ArticleHeader', ArticleHeader)
+    app.component('vImageViewer', vImageViewer)
     if (import.meta.env.SSR) {
       const { collect } = setup(app)
       app.provide('css-render-collect', collect)
@@ -61,5 +65,9 @@ export default {
         busuanzi.fetch()
       }
     }
+  },
+  setup() {
+    const route = useRoute()
+    imageViewer(route)
   },
 }
