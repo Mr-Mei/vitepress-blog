@@ -43,7 +43,7 @@ const NaiveUIProvider = defineComponent({
       {
         default: () => [
           h(MyLayout, null, { default: this.$slots.default?.() }),
-          import.meta.env.SSR ? [h(CssRenderStyle), h(VitepressPath)] : null,
+          (import.meta as any).env.SSR ? [h(CssRenderStyle), h(VitepressPath)] : null,
         ],
       }
     )
@@ -56,7 +56,7 @@ export default {
   enhanceApp: ({ app, router }) => {
     app.component('ArticleHeader', ArticleHeader)
     app.component('vImageViewer', vImageViewer)
-    if (import.meta.env.SSR) {
+    if ((import.meta as any).env.SSR) {
       const { collect } = setup(app)
       app.provide('css-render-collect', collect)
     }

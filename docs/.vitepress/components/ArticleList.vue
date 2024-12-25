@@ -26,13 +26,13 @@ const jump = (path: string) => {
   <div class="artical-list">
     <section class="left-wrapper">
       <img class="avatar" src="/assets/avatar.jpg" alt="avatar" />
-      <p class="name">holden</p>
-      <p class="text">快不快乐有天总过去</p>
+      <p class="name">文艺小书生</p>
+      <p class="text">时光清浅，岁月安然</p>
       <div class="email">
         <NIcon :size="23">
           <EmailOutlined />
         </NIcon>
-        holden.lee@aliyun.com
+        7531336@qq.com
       </div>
     </section>
     <section class="right-wrapper">

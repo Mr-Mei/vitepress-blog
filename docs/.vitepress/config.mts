@@ -20,7 +20,7 @@ const autoSidebar = () => {
 
 export default defineConfig({
   base: '/vitepress-blog-template/',
-  title: '山不让尘，川不辞盈',
+  title: '岁月辗转，情怀如初',
   description: 'A VitePress Site',
   vite: {
     plugins: [
@@ -71,7 +71,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
-      { text: '闲聊', link: '/pages/comment' },
+      { text: '随笔录', link: '/pages/comment' },
       { text: '关于', link: '/pages/about' },
       {
         text: '推荐',
@@ -88,8 +88,6 @@ export default defineConfig({
 
     sidebar: autoSidebar(),
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/lee-holden/vitepress-blog-template' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/Mr-Mei' }],
   },
 })

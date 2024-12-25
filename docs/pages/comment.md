@@ -1,5 +1,5 @@
 ---
-title: 闲聊
+title: '闲聊'
 date: 2024-11-12
 prev: false
 next: false
