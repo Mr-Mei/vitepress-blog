@@ -1,22 +1,10 @@
 import { defineConfig } from 'vitepress'
 import { pagefindPlugin } from 'vitepress-plugin-pagefind'
-import { generateSidebar } from 'vitepress-sidebar'
 import { HeaderPlugin } from './plugins/headerPlugin'
-const fileAndStyles: Record<string, string> = {}
+import { useAutoSidebar } from './hooks/useAutoSidebar'
 
-const autoSidebar = () => {
-  let result: any = generateSidebar({
-    documentRootPath: '/docs',
-    collapseDepth: 2,
-    useTitleFromFrontmatter: true,
-    sortMenusByFrontmatterDate: true,
-    sortMenusOrderByDescending: true,
-  })
-  return result.map((year) => ({
-    ...year,
-    items: year.items.reverse(),
-  }))
-}
+const { autoSidebar } = useAutoSidebar()
+const fileAndStyles: Record<string, string> = {}
 
 export default defineConfig({
   base: '/vitepress-blog',
@@ -71,15 +59,15 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
-      { text: '随笔录', link: '/pages/comment' },
-      { text: '关于', link: '/pages/about' },
+      { text: '随笔录', link: '/文档/comment' },
+      { text: '关于', link: '/文档/about' },
       {
         text: '推荐',
         items: [
           {
             items: [
-              { text: '实用网页', link: '/pages/webPage' },
-              { text: '工具插件', link: '/pages/tools' },
+              { text: '网页精灵', link: '/笔记/webPage' },
+              { text: '工具精灵', link: '/笔记/tools' },
             ],
           },
         ],

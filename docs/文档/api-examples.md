@@ -1,7 +1,6 @@
 ---
 outline: deep
 title: api examples
-date: 2024-11-12
 info: api测试
 tags:
   - api

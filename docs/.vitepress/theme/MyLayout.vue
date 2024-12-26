@@ -19,16 +19,14 @@ const hideLoading = () => {
   loading.value = false
 }
 
-// watch(isDark, (dark) => {
-//   if (!inBrowser) return
-
-//   const iframe = document.querySelector('giscus-widget')?.shadowRoot?.querySelector('iframe')
-
-//   iframe?.contentWindow?.postMessage(
-//     { giscus: { setConfig: { theme: dark ? 'dark' : 'light' } } },
-//     'https://giscus.app'
-//   )
-// })
+watch(isDark, (dark) => {
+  if (!inBrowser) return
+  const iframe = document.querySelector('giscus-widget')?.shadowRoot?.querySelector('iframe')
+  iframe?.contentWindow?.postMessage(
+    { giscus: { setConfig: { theme: dark ? 'dark' : 'light' } } },
+    'https://giscus.app'
+  )
+})
 
 // watch(
 //   () => route.path,
@@ -73,11 +71,11 @@ const hideLoading = () => {
       <div style="margin-top: 24px">
         <Giscus
           :key="page.filePath"
-          repo="lee-holden/vitepress-blog-template"
-          repo-id="R_kgDONRAkeA"
+          repo="Mr-Mei/vitepress-blog"
+          repo-id="R_kgDONh_0-g"
           category="Announcements"
-          category-id="IC_kwDONRAkeM4CkXRA"
-          mapping="title"
+          category-id="DIC_kwDONh_0-s4ClhnV"
+          mapping="pathname"
           strict="0"
           reactions-enabled="1"
           emit-metadata="0"

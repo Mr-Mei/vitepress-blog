@@ -5,20 +5,23 @@ import dayjs from 'dayjs'
 import { EmailOutlined, DiscountOutlined } from '@vicons/material'
 // @ts-ignore
 import { data as posts } from '../utils/posts.data'
+
 const router = useRouter()
-const list = posts
-  .filter((item) => !item.url.includes('/pages/'))
-  .map((item) => ({
+
+const timelineList = posts
+  .filter((item: Record<string, any>) => !item.url.includes('/文档/'))
+  .map((item: Record<string, any>) => ({
     ...item,
     unixDate: dayjs(item.frontmatter.date).unix(),
   }))
-  .sort((a, b) => b.unixDate - a.unixDate)
-  .map((item) => {
+  .sort((a: Record<string, any>, b: Record<string, any>) => b.unixDate - a.unixDate)
+  .map((item: Record<string, any>) => {
     const { unixDate, ...rest } = item
     return rest
   })
+
 const jump = (path: string) => {
-  router.go('vitepress-blog-template' + path)
+  router.go('vitepress-blog' + path)
 }
 </script>
 
@@ -37,7 +40,7 @@ const jump = (path: string) => {
     </section>
     <section class="right-wrapper">
       <n-timeline size="large">
-        <n-timeline-item v-for="item in list">
+        <n-timeline-item v-for="item in timelineList">
           <template #icon>
             <div class="icon">
               <p>{{ dayjs(item.frontmatter.date).format('YYYY-MM-DD') }}</p>

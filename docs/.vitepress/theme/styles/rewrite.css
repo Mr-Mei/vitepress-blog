@@ -59,4 +59,25 @@
   .VPDocOutlineItem.nested li > a.active {
     background-color: var(--grayA3);
   }
+
+  table {
+    width: 100%; /* 表格宽度占满容器 */
+    table-layout: fixed; /* 设置固定表格布局 */
+    border-collapse: collapse; /* 表格边框合并 */
+  }
+
+  tr,
+  thead,
+  tbody {
+    width: 100%; /* 表格行宽度占满容器 */
+  }
+
+  th,
+  td {
+    width: 33%; /* 每列平均分配宽度 */
+    text-align: left; /* 文本左对齐 */
+    word-wrap: break-word; /* 自动换行 */
+    padding: 8px; /* 单元格内边距 */
+    border: 1px solid #ddd; /* 单元格边框 */
+  }
 }
