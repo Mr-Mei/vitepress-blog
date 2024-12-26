@@ -1,43 +1,44 @@
-name: Build and Deploy
+name: Build and Deploy # 工作流名称
+
 on:
-  push: # 监听 master、main 分支上的 push 事件
+  push:
     branches:
-      - master
-      - main
-  workflow_dispatch:
+      - master # 监听 'master' 分支的 push 事件
+      - main # 监听 'main' 分支的 push 事件
+  workflow_dispatch: # 允许手动触发该工作流
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: write # 允许写入内容权限
+  pages: write # 允许写入 GitHub Pages 权限
+  id-token: write # 允许写入 ID Token
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  build-and-deploy: # 定义任务
+    runs-on: ubuntu-latest # 指定运行环境为 Ubuntu 最新版本
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout # 获取代码
+        uses: actions/checkout@v3 # 使用官方 Checkout Action 获取当前仓库的代码
         with:
-          persist-credentials: false
+          persist-credentials: false # 不持久化凭证，以避免缓存问题
 
-      - name: Install Node.js and pnpm
-        uses: actions/setup-node@v3
+      - name: Setup Node.js # 设置 Node.js 环境
+        uses: actions/setup-node@v3 # 使用官方的 Node.js Setup Action
         with:
-          node-version: 18 # 使用最新的 LTS Node 版本
-          cache: pnpm
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8.0.0 # 使用较新版本 pnpm
+          node-version: '18' # 使用 Node.js 18 版本（可以根据项目需要调整）
 
-      - name: Install and Build
+      - name: Install pnpm # 安装 pnpm 包管理器
         run: |
-          pnpm install
-          pnpm docs:build
+          npm install -g pnpm  # 通过 npm 安装 pnpm
+          pnpm --version  # 确认 pnpm 安装成功并输出其版本号
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Install and Build # 安装依赖并构建项目
+        run: |
+          pnpm install  # 安装项目依赖
+          pnpm docs:build  # 构建项目，生成静态文件（此处是构建文档）
+
+      - name: Deploy # 将构建的内容发布到 GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4 # 使用第三方 Action 来部署到 GitHub Pages
         with:
-          BRANCH: gh-pages
-          FOLDER: docs/.vitepress/dist
-          CLEAN: true
+          BRANCH: gh-pages # 指定部署的分支为 gh-pages
+          FOLDER: docs/.vitepress/dist # 构建产物所在文件夹路径
+          CLEAN: true # 部署前清理目标文件夹
