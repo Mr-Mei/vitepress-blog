@@ -19,7 +19,7 @@ const autoSidebar = () => {
 }
 
 export default defineConfig({
-  base: 'docs/',
+  base: 'vitepress-blog/docs/',
   title: '岁月辗转，情怀如初',
   description: 'A VitePress Site',
   vite: {
