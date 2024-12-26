@@ -1,38 +1,43 @@
 name: Build and Deploy
-on: # 监听 master 分支上的 push 事件
-  push:
+on:
+  push: # 监听 master、main 分支上的 push 事件
     branches:
       - master
       - main
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest # 构建环境使用 ubuntu
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout # 获取源码
+      - name: Checkout
         uses: actions/checkout@v3
         with:
           persist-credentials: false
 
-      - name: Install pnpm # 安装pnpm
+      - name: Install Node.js and pnpm
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # 使用最新的 LTS Node 版本
+          cache: pnpm
+      - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 6.0.2
+          version: 8.0.0 # 使用较新版本 pnpm
 
-      - name: Install and Build # 下载依赖 打包项目
+      - name: Install and Build
         run: |
           pnpm install
           pnpm docs:build
 
-      - name: Deploy # 将打包内容发布到 github page
-        uses: JamesIves/github-pages-deploy-action@v4 # 使用别人写好的 actions
-        with: # 自定义环境变量
-          BRANCH: gh-pages # github page指定分支
-          FOLDER: docs/.vitepress/dist # build后生成的目录
-          clean: true
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          BRANCH: gh-pages
+          FOLDER: docs/.vitepress/dist
+          CLEAN: true
