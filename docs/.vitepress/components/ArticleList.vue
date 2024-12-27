@@ -211,7 +211,6 @@ const jump = (path: string) => {
       .title {
         font-size: 20px;
         font-weight: 600;
-        color: #333;
         line-height: 1.5;
         letter-spacing: 0.5px;
         margin-bottom: 10px;
