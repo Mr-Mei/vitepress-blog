@@ -77,6 +77,7 @@ const jump = (path: string) => {
   height: 100%;
   color: var(--black-color-1);
   display: flex;
+  font-family: 'Roboto', sans-serif;
 
   .left-wrapper {
     position: sticky;
@@ -89,6 +90,10 @@ const jump = (path: string) => {
     flex-direction: column;
     align-items: center;
     border-radius: var(--border-radius);
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
 
     p {
       margin: 0;
@@ -101,10 +106,19 @@ const jump = (path: string) => {
       cursor: auto;
       margin: 40px 0 0 0;
     }
+    .avatar:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 0, 255, 0.5);
+    }
 
     .name {
-      font-size: 20px;
+      font-family: 'Brush Script', 'Cursive', 'Lucida Handwriting', cursive; /* 使用内建的手写字体 */
+      font-size: 26px;
+      font-weight: 400; /* 适中的字体粗细 */
       margin: 10px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* 增加阴影，提升签名感 */
+      letter-spacing: 1px; /* 稍微增加字母间距 */
+      font-style: italic; /* 斜体效果，增加签名感 */
     }
 
     .text {
@@ -136,6 +150,26 @@ const jump = (path: string) => {
 
     .card {
       cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .info,
+      .date {
+        font-size: 14px;
+        color: var(--grey-color-1);
+        margin-top: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .date {
+        display: none;
+      }
     }
 
     .icon {
@@ -176,7 +210,11 @@ const jump = (path: string) => {
 
       .title {
         font-size: 20px;
-        font-weight: 700;
+        font-weight: 600;
+        color: #333;
+        line-height: 1.5;
+        letter-spacing: 0.5px;
+        margin-bottom: 10px;
         cursor: pointer;
       }
 

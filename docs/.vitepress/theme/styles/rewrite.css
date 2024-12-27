@@ -60,6 +60,10 @@
     background-color: var(--grayA3);
   }
 
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+
   table {
     width: 100%; /* 表格宽度占满容器 */
     table-layout: fixed; /* 设置固定表格布局 */
@@ -79,5 +83,14 @@
     word-wrap: break-word; /* 自动换行 */
     padding: 8px; /* 单元格内边距 */
     border: 1px solid #ddd; /* 单元格边框 */
+  }
+  .VPNav .title span {
+    font-family: 'Brush Script', 'Cursive', 'Lucida Handwriting', cursive; /* 使用内建的手写字体 */
+    font-size: 22px;
+    font-weight: 400; /* 适中的字体粗细 */
+    margin: 10px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* 增加阴影，提升签名感 */
+    letter-spacing: 1px; /* 稍微增加字母间距 */
+    font-style: italic; /* 斜体效果，增加签名感 */
   }
 }

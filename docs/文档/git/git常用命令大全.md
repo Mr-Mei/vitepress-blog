@@ -1,6 +1,6 @@
 ### **1. 基本配置**
 
-```
+```bash
 # 配置用户名和邮箱（提交时的标识）
 git config --global user.name "YourName"
 git config --global user.email "YourEmail@example.com"
@@ -16,7 +16,7 @@ git config --global init.defaultBranch main
 
 ### **2. 仓库初始化**
 
-```
+```bash
 # 初始化仓库
 git init
 
@@ -28,7 +28,7 @@ git clone <repository_url>
 
 ### **3. 状态查看**
 
-```
+```bash
 # 查看当前工作目录的状态
 git status
 
@@ -43,7 +43,7 @@ git log -p <file>
 
 ### **4. 文件操作**
 
-```
+```bash
 # 添加文件到暂存区
 git add <file>
 git add .  # 添加所有文件
@@ -67,7 +67,7 @@ git commit -m "Rename file"
 
 ### **5. 分支操作**
 
-```
+```bash
 # 查看分支
 git branch
 
@@ -92,7 +92,7 @@ git branch -D <branch_name>  # 强制删除
 
 ### **6. 远程操作**
 
-```
+```bash
 # 查看远程仓库
 git remote -v
 
@@ -116,7 +116,7 @@ git remote remove <remote_name>
 
 ### **7. 标签操作**
 
-```
+```bash
 # 创建标签
 git tag <tag_name>
 
@@ -137,7 +137,7 @@ git push origin --tags
 
 ### **8. 撤销操作**
 
-```
+```bash
 # 撤销工作区的修改
 git checkout -- <file>
 
@@ -155,7 +155,7 @@ git reset --hard HEAD~1
 
 ### **9. 查看和对比**
 
-```
+```bash
 # 查看文件改动
 git diff
 
@@ -170,7 +170,7 @@ git diff <branch1> <branch2>
 
 ### **10. Stash（保存临时工作）**
 
-```
+```bash
 # 保存当前工作进度
 git stash
 
@@ -191,7 +191,7 @@ git stash pop
 
 ### **11. Submodule（子模块管理）**
 
-```
+```bash
 # 添加子模块
 git submodule add <repository_url> <path>
 
@@ -209,7 +209,7 @@ git rm --cached <path>
 
 ### **12. Rebase（变基）**
 
-```
+```bash
 # 将当前分支变基到目标分支
 git rebase <branch_name>
 
@@ -224,7 +224,7 @@ git rebase --abort
 
 ### **13. Tag 操作**
 
-```
+```bash
 # 创建轻量标签
 git tag <tag_name>
 
@@ -246,7 +246,7 @@ git push origin --tags  # 推送所有标签
 
 ### **14. 清理工作区**
 
-```
+```bash
 # 清理未跟踪的文件
 git clean -f
 
@@ -258,7 +258,7 @@ git clean -fd
 
 ### **15. 高级操作**
 
-```
+```bash
 # 修改最后一次提交信息
 git commit --amend -m "New message"
 
@@ -278,19 +278,19 @@ git rebase -i HEAD~n
 
 1. **撤回最近的提交但保留改动**：
 
-   ```
+   ```bash
    git reset --soft HEAD~1
    ```
 
 2. **删除最近的提交及改动**：
 
-   ```
+   ```bash
    git reset --hard HEAD~1
    ```
 
 3. **强制拉取并覆盖本地改动**：
 
-   ```
+   ```bash
    git fetch --all
    git reset --hard origin/<branch_name>
    git pull
@@ -298,6 +298,6 @@ git rebase -i HEAD~n
 
 4. **清理无用分支**：
 
-   ```
+   ```bash
    git fetch --prune
    ```

@@ -65,6 +65,7 @@ defineProps<{
 <style scoped lang="scss">
 .header {
   width: 100%;
+  font-family: 'Roboto', sans-serif;
 
   .info {
     width: 100%;
