@@ -56,30 +56,40 @@ tags:
 
 ## 在线工具
 
-| 名称                    | 地址                                                   | 备注                            |
-| ----------------------- | ------------------------------------------------------ | ------------------------------- |
-| photopea                | https://www.photopea.com/                              | 在线Photoshop                   |
-| scrollbar               | https://scrollbar.app/                                 | css滚动条样式生成器             |
-| mp3cut                  | https://mp3cut.net/cn/                                 | 在线音频剪辑                    |
-| JSON工具网              | https://www.json.cn/                                   | 在线工具合集                    |
-| lddgo                   | https://www.lddgo.net/index                            | 在线工具大全                    |
-| 67tool                  | https://www.67tool.com/                                | 在线工具大全                    |
-| regex101                | https://regex101.com/                                  | 正则测试                        |
-| css-loaders             | https://css-loaders.com/classic/                       | CSS加载动画合集                 |
-| keen-slider             | https://keen-slider.io/examples                        | 轮播图示例合集                  |
-| animista                | https://animista.net/                                  | css动画效果生成器               |
-| Neumorphism             | https://neumorphism.io/                                | 拟态风格生成器                  |
-| cssgrid-generator       | https://cssgrid-generator.netlify.app/                 | grid布局生成器                  |
-| gradientbuttons         | https://gradientbuttons.colorion.co/                   | 渐变按钮CSS生成器               |
-| shadows                 | https://shadows.brumm.af/                              | 阴影生成器                      |
-| getwaves                | https://getwaves.io/                                   | 波浪css生成器                   |
-| Coolbackgrounds         | https://coolbackgrounds.io/                            | 页面背景生成器                  |
-| css-separator-generator | https://wweb.dev/resources/css-separator-generator     | 不规则css生成器                 |
-| uncss                   | https://oct.cn/project/uncss/                          | 一键去除项目中未使用的css样式表 |
-| jwt-decode              | https://tooltt.com/jwt-decode/                         | 在线JWT Token解析解码           |
-| svgeditor               | https://www.jyshare.com/more/svgeditor/                | svg在线编辑器                   |
-| favicon                 | https://favicon.io/                                    | ico图标转换                     |
-| ico51                   | https://www.ico51.cn/                                  | ico图标生成                     |
-| CSS Sprites Generator   | https://www.toptal.com/developers/css/sprite-generator | 精灵/雪碧图制作                 |
-| tinypng                 | https://tinypng.com/                                   | 在线图片压缩                    |
-| boce                    | https://www.boce.com/                                  | 域名测速                        |
+| 名称                    | 地址                                                   | 备注                             |
+| ----------------------- | ------------------------------------------------------ | -------------------------------- |
+| photopea                | https://www.photopea.com/                              | 在线Photoshop                    |
+| scrollbar               | https://scrollbar.app/                                 | css滚动条样式生成器              |
+| mp3cut                  | https://mp3cut.net/cn/                                 | 在线音频剪辑                     |
+| JSON工具网              | https://www.json.cn/                                   | 在线工具合集                     |
+| lddgo                   | https://www.lddgo.net/index                            | 在线工具大全                     |
+| 67tool                  | https://www.67tool.com/                                | 在线工具大全                     |
+| regex101                | https://regex101.com/                                  | 正则测试                         |
+| css-loaders             | https://css-loaders.com/classic/                       | CSS加载动画合集                  |
+| keen-slider             | https://keen-slider.io/examples                        | 轮播图示例合集                   |
+| animista                | https://animista.net/                                  | css动画效果生成器                |
+| Neumorphism             | https://neumorphism.io/                                | 拟态风格生成器                   |
+| cssgrid-generator       | https://cssgrid-generator.netlify.app/                 | grid布局生成器                   |
+| gradientbuttons         | https://gradientbuttons.colorion.co/                   | 渐变按钮CSS生成器                |
+| shadows                 | https://shadows.brumm.af/                              | 阴影生成器                       |
+| getwaves                | https://getwaves.io/                                   | 波浪css生成器                    |
+| Coolbackgrounds         | https://coolbackgrounds.io/                            | 页面背景生成器                   |
+| css-separator-generator | https://wweb.dev/resources/css-separator-generator     | 不规则css生成器                  |
+| uncss                   | https://oct.cn/project/uncss/                          | 一键去除项目中未使用的css样式表  |
+| jwt-decode              | https://tooltt.com/jwt-decode/                         | 在线JWT Token解析解码            |
+| svgeditor               | https://www.jyshare.com/more/svgeditor/                | svg在线编辑器                    |
+| favicon                 | https://favicon.io/                                    | ico图标转换                      |
+| ico51                   | https://www.ico51.cn/                                  | ico图标生成                      |
+| CSS Sprites Generator   | https://www.toptal.com/developers/css/sprite-generator | 精灵/雪碧图制作                  |
+| tinypng                 | https://tinypng.com/                                   | 在线图片压缩                     |
+| boce                    | https://www.boce.com/                                  | 域名测速                         |
+| 码工具-在线工具箱       | https://www.matools.com/                               | 涵盖开发常用文档及工具，很实用。 |
+| CSS转Sass               | https://www.w3cschool.cn/tools/index?name=sass_tools   | CSS转Sass的在线工具              |
+| 常用正则在线工具        | https://tool.lu/regex                                  | 包含常用的正则表达式             |
+| CSS、JS压缩美化         | https://tool.css-js.com/                               | 在线CSS, JS 压缩美化, 加密解密   |
+| JS/CSS/HTML压缩         | https://tool.oschina.net/jscompress                    | 压缩采用YUI Compressor实现       |
+| Json.cn                 | https://www.json.cn/                                   | json标准格式检测及其他工具       |
+| 在线图片格式转换        | http://tools.jb51.net/aideddesign/img2webp_png_jpeg    | 支持转换为webp、jpeg、png的格式  |
+| 网页版OCR识别           | https://web.baimiaoapp.com/                            | 网页OCR文字识别 - 白描网页版     |
+| SVG 文件转换器          | https://svgconverter.com/zh/                           | 只需单击几下即可转换文件         |
+| 比特虫                  | https://www.bitbug.net/                                | 在线制作ico图标，ico图标转换工具 |
