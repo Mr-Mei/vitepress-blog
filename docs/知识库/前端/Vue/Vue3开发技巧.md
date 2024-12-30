@@ -1,6 +1,6 @@
 # vue3 开发技巧
 
-## 1. 善用h（createVNode）和render 函数
+## 1. 善用 h、createVNode 和 render 函数
 
 我们知道在vue3中导出了一个神奇的createVNode 函数 当前函数它能创建一个vdom，大家不要小看vdom， 我们好好利用它，就能做出意想不到的效果`比如我们要实现一个弹窗组件`，我们通常的思路是写一个组件在项目中引用进来，通过v-model来控制他的显示隐藏，但是这样有个问题，我们复用的时候的成本需要复制粘贴。我们没有办法来提高效率，比如封装成 npm 通过调用js来使用。然而，有了 createVNode 和render 之后，所有问题就不是问题了。
 
@@ -8,16 +8,16 @@
 // 我们可以将弹窗组件封装为一个方法，放到任何想放的地方
 // 我们先写一个弹窗组件
 const message = {
-    setup() {
-        const num = ref(1)
-        return {
-            num
-        }
-    },
-    template: `<div>
+  setup() {
+    const num = ref(1)
+    return {
+      num,
+    }
+  },
+  template: `<div>
                   <div>{{num}}</div>
                   <div>这是一个弹窗</div>
-              </div>`
+              </div>`,
 }
 
 // 初始化组件生成vdom
@@ -26,7 +26,7 @@ const vm = createVNode(message)
 const container = document.createElement('div')
 //render通过patch 变成dom
 render(vm, container)
-// 弹窗挂到任何你想去的地方  
+// 弹窗挂到任何你想去的地方
 document.body.appendChild(container.firstElementChild)
 ```
 
@@ -66,10 +66,10 @@ jsx和模板语法都是vue 支持的的书写范畴，然后他们确有不同�
 ```vue
 //btn1.vue
 <template>
-<div>
+  <div>
     这是btn1{{ num }}
     <slot></slot>
-    </div>
+  </div>
 </template>
 <script>
 import { ref, defineComponent } from 'vue'
@@ -78,7 +78,7 @@ export default defineComponent({
   setup() {
     const num = ref(1)
     return { num }
-  }
+  },
 })
 </script>
 //btn2.vue
@@ -89,16 +89,15 @@ export default defineComponent({
   </div>
 </template>
 <script>
-    import { ref, defineComponent } from 'vue'
-    export default defineComponent({
-        name: 'btn2',
-        setup() {
-            const num = ref(2)
-            return { num }
-        }
-    })
+import { ref, defineComponent } from 'vue'
+export default defineComponent({
+  name: 'btn2',
+  setup() {
+    const num = ref(2)
+    return { num }
+  },
+})
 </script>
-
 ```
 
 用JSX配合函数式组件来做一个容器组件
@@ -108,7 +107,11 @@ export default defineComponent({
 import btn1 from './btn1.vue'
 import btn2 from './btn2.vue'
 export const renderFn = function (props, context) {
-    return props.type == 1 ? <btn1>{context.slots.default()}</btn1> : <btn2>{context.slots.default()}</btn2>
+  return props.type == 1 ? (
+    <btn1>{context.slots.default()}</btn1>
+  ) : (
+    <btn2>{context.slots.default()}</btn2>
+  )
 }
 ```
 
@@ -117,18 +120,17 @@ export const renderFn = function (props, context) {
 ```vue
 //业务组件
 <template>
-	<renderFn :type="1">1111111</renderFn>
+  <renderFn :type="1">1111111</renderFn>
 </template>
 <script>
 import { renderFn } from './components'
 console.log(renderFn)
 export default {
-    components: {
-        renderFn
-    },
-    setup() {
-    },
-};
+  components: {
+    renderFn,
+  },
+  setup() {},
+}
 </script>
 ```
 
@@ -159,31 +161,30 @@ export default {
 <template>
   <button @click="count++">添加</button>
 </template>
- 
+
 <script setup>
-  import { provide, ref } from "vue";
-  const count = ref(0);
-  provide('count', count)
+import { provide, ref } from 'vue'
+const count = ref(0)
+provide('count', count)
 </script>
 ```
 
 子组件中注入inject
 
 ```vue
-//child.vue
-//使用inject 注入
+//child.vue //使用inject 注入
 <template>
   <div>这是注入的内容{{ count }}</div>
 </template>
- 
+
 <script setup>
-  import { inject } from "vue";
-  const count = inject('count');
-  console.log(count)
+import { inject } from 'vue'
+const count = inject('count')
+console.log(count)
 </script>
 ```
 
-## 4. 善用Composition API抽离通用逻辑
+## 4. 高效使用 Composition API
 
 众所周知，vue3最大的新特性，当属`Composition API` 也叫组合api ，用好了他，就能提高你在行业的竞争力。
 
@@ -195,36 +196,34 @@ export default {
 
 ```vue
 <template>
-    <div ref="composition">测试compositionApi</div>
+  <div ref="composition">测试compositionApi</div>
 </template>
 <script>
-import { inject, ref, onMounted, computed, watch } from "vue";
+import { inject, ref, onMounted, computed, watch } from 'vue'
 export default {
-    // setup起手
-    setup(props, { attrs, emit, slots, expose }) {
- 
-        // 获取页面元素
-        const composition = ref(null)
-        // 依赖注入
-        const count = inject('foo', '1')
-        // 响应式结合
-        const num = ref(0)
-        //钩子函数
-        onMounted(() => {
-            console.log('这是个钩子')
-        })
-        // 计算属性
-        computed(() => num.value + 1)
-        // 监听值的变化
-        watch(count, (count, prevCount) => {
-            console.log('这个值变了')
-        })
-        return {
-            num,
-            count
-        }
- 
+  // setup起手
+  setup(props, { attrs, emit, slots, expose }) {
+    // 获取页面元素
+    const composition = ref(null)
+    // 依赖注入
+    const count = inject('foo', '1')
+    // 响应式结合
+    const num = ref(0)
+    //钩子函数
+    onMounted(() => {
+      console.log('这是个钩子')
+    })
+    // 计算属性
+    computed(() => num.value + 1)
+    // 监听值的变化
+    watch(count, (count, prevCount) => {
+      console.log('这个值变了')
+    })
+    return {
+      num,
+      count,
     }
+  },
 }
 </script>
 ```
@@ -236,202 +235,199 @@ export default {
 于是`Composition API`的逻辑复用能力就派上了用场
 
 ```js
-import { watch, getCurrentScope, onScopeDispose, unref, ref } from "vue"
+import { watch, getCurrentScope, onScopeDispose, unref, ref } from 'vue'
 export const isString = (val) => typeof val === 'string'
-export const noop = () => { }
+export const noop = () => {}
 export function unrefElement(elRef) {
-    const plain = unref(elRef)// 拿到本来的值
-    return (plain).$el ?? plain // 前面的值为null、undefined，则取后面的值，否则都取前面的值
+  const plain = unref(elRef) // 拿到本来的值
+  return plain.$el ?? plain // 前面的值为null、undefined，则取后面的值，否则都取前面的值
 }
 export function tryOnScopeDispose(fn) {
-    // 如果有活跃的effect
-    if (getCurrentScope()) {
-        // 在当前活跃的 effect 作用域上注册一个处理回调。该回调会在相关的 effect 作用域结束之后被调用
-        // 能代替onUmounted
-        onScopeDispose(fn)
-        return true
-    }
-    return false
+  // 如果有活跃的effect
+  if (getCurrentScope()) {
+    // 在当前活跃的 effect 作用域上注册一个处理回调。该回调会在相关的 effect 作用域结束之后被调用
+    // 能代替onUmounted
+    onScopeDispose(fn)
+    return true
+  }
+  return false
 }
 // 带有控件的setTimeout包装器。
 export function useTimeoutFn(
-    cb,// 回调
-    interval,// 时间
-    options = {},
+  cb, // 回调
+  interval, // 时间
+  options = {}
 ) {
-    const {
-        immediate = true,
-    } = options
- 
-    const isPending = ref(false)
- 
-    let timer
- 
-    function clear() {
-        if (timer) {
-            clearTimeout(timer)
-            timer = null
-        }
+  const { immediate = true } = options
+
+  const isPending = ref(false)
+
+  let timer
+
+  function clear() {
+    if (timer) {
+      clearTimeout(timer)
+      timer = null
     }
- 
-    function stop() {
-        isPending.value = false
-        clear()
-    }
- 
-    function start(...args) {
-        // 清除上一次定时器
-        clear()
-        // 是否在pending 状态
-        isPending.value = true
-        // 重新启动定时器
-        timer = setTimeout(() => {
-            // 当定时器执行的时候结束pending状态
-            isPending.value = false
-            // 初始化定时器的id
-            timer = null
-            // 执行回调
-            cb(...args)
-        }, unref(interval))
-    }
-    if (immediate) {
-        isPending.value = true
- 
-        start()
-    }
- 
-    tryOnScopeDispose(stop)
- 
-    return {
-        isPending,
-        start,
-        stop,
-    }
+  }
+
+  function stop() {
+    isPending.value = false
+    clear()
+  }
+
+  function start(...args) {
+    // 清除上一次定时器
+    clear()
+    // 是否在pending 状态
+    isPending.value = true
+    // 重新启动定时器
+    timer = setTimeout(() => {
+      // 当定时器执行的时候结束pending状态
+      isPending.value = false
+      // 初始化定时器的id
+      timer = null
+      // 执行回调
+      cb(...args)
+    }, unref(interval))
+  }
+  if (immediate) {
+    isPending.value = true
+
+    start()
+  }
+
+  tryOnScopeDispose(stop)
+
+  return {
+    isPending,
+    start,
+    stop,
+  }
 }
 // 轻松使用EventListener。安装时使用addEventListener注册，卸载时自动移除EventListener。
 export function useEventListener(...args) {
-    let target
-    let event
-    let listener
-    let options
-    // 如果第一个参数是否是字符串
-    if (isString(args[0])) {
-        //结构内容
-        [event, listener, options] = args
-        target = window
-    }
-    else {
-        [target, event, listener, options] = args
-    }
-    let cleanup = noop
-    const stopWatch = watch(
-        () => unrefElement(target),// 监听dom
-        (el) => {
-            cleanup() // 执行默认函数
-            if (!el)
-                return
-            // 绑定事件el如果没有传入就绑定为window
-            el.addEventListener(event, listener, options)
-            // 重写函数方便改变的时候卸载
-            cleanup = () => {
-                el.removeEventListener(event, listener, options)
-                cleanup = noop
-            }
-        },
-        // flush: 'post' 模板引用侦听
-        { immediate: true, flush: 'post' },
-    )
-    // 卸载
-    const stop = () => {
-        stopWatch()
-        cleanup()
-    }
- 
-    tryOnScopeDispose(stop)
- 
-    return stop
-}
- 
-export function useClipboard(options = {}) {
-    //获取配置
-    const {
-        navigator = window.navigator,
-        read = false,
-        source,
-        copiedDuring = 1500,
-    } = options
-    // 事件类型
-    const events = ['copy', 'cut']
-    // 判断当前浏览器知否支持clipboard
-    const isSupported = Boolean(navigator && 'clipboard' in navigator)
-    // 导出的text
-    const text = ref('')
-    // 导出的copied
-    const copied = ref(false)
-    // 使用的的定时器钩子
-    const timeout = useTimeoutFn(() => copied.value = false, copiedDuring)
- 
-    function updateText() {
-        //解析系统剪贴板的文本内容返回一个Promise
-        navigator.clipboard.readText().then((value) => {
-            text.value = value
-        })
-    }
- 
-    if (isSupported && read) {
-        // 绑定事件
-        for (const event of events)
-            useEventListener(event, updateText)
-    }
-    // 复制剪切板方法
-    // navigator.clipboard.writeText 方法是异步的返回一个promise
-    async function copy(value = unref(source)) {
-        if (isSupported && value != null) {
-            await navigator.clipboard.writeText(value)
-            // 响应式的值，方便外部能动态获取
-            text.value = value
-            copied.value = true
-            timeout.start()// copied.value = false 
-        }
-    }
- 
-    return {
-        isSupported,
-        text,
-        copied,
-        copy,
-    }
+  let target
+  let event
+  let listener
+  let options
+  // 如果第一个参数是否是字符串
+  if (isString(args[0])) {
+    //结构内容
+    ;[event, listener, options] = args
+    target = window
+  } else {
+    ;[target, event, listener, options] = args
+  }
+  let cleanup = noop
+  const stopWatch = watch(
+    () => unrefElement(target), // 监听dom
+    (el) => {
+      cleanup() // 执行默认函数
+      if (!el) return
+      // 绑定事件el如果没有传入就绑定为window
+      el.addEventListener(event, listener, options)
+      // 重写函数方便改变的时候卸载
+      cleanup = () => {
+        el.removeEventListener(event, listener, options)
+        cleanup = noop
+      }
+    },
+    // flush: 'post' 模板引用侦听
+    { immediate: true, flush: 'post' }
+  )
+  // 卸载
+  const stop = () => {
+    stopWatch()
+    cleanup()
+  }
+
+  tryOnScopeDispose(stop)
+
+  return stop
 }
 
+export function useClipboard(options = {}) {
+  //获取配置
+  const { navigator = window.navigator, read = false, source, copiedDuring = 1500 } = options
+  // 事件类型
+  const events = ['copy', 'cut']
+  // 判断当前浏览器知否支持clipboard
+  const isSupported = Boolean(navigator && 'clipboard' in navigator)
+  // 导出的text
+  const text = ref('')
+  // 导出的copied
+  const copied = ref(false)
+  // 使用的的定时器钩子
+  const timeout = useTimeoutFn(() => (copied.value = false), copiedDuring)
+
+  function updateText() {
+    //解析系统剪贴板的文本内容返回一个Promise
+    navigator.clipboard.readText().then((value) => {
+      text.value = value
+    })
+  }
+
+  if (isSupported && read) {
+    // 绑定事件
+    for (const event of events) useEventListener(event, updateText)
+  }
+  // 复制剪切板方法
+  // navigator.clipboard.writeText 方法是异步的返回一个promise
+  async function copy(value = unref(source)) {
+    if (isSupported && value != null) {
+      await navigator.clipboard.writeText(value)
+      // 响应式的值，方便外部能动态获取
+      text.value = value
+      copied.value = true
+      timeout.start() // copied.value = false
+    }
+  }
+
+  return {
+    isSupported,
+    text,
+    copied,
+    copy,
+  }
+}
 ```
 
 这时我们就复用了复制的逻辑，如下代码中直接引入在模板中使用即可
 
 ```vue
 <template>
-    <div v-if="isSupported">
-        <p>
-            <code>{{ text || '空' }}</code>
-        </p>
-        <input v-model="input" type="text" />
-        <button @click="copy(input)">
-            <span v-if="!copied">复制</span>
-            <span v-else>复制中!</span>
-        </button>
-    </div>
-    <p v-else>您的浏览器不支持剪贴板API</p>
+  <div v-if="isSupported">
+    <p>
+      <code>{{ text || '空' }}</code>
+    </p>
+    <input v-model="input" type="text" />
+    <button @click="copy(input)">
+      <span v-if="!copied">复制</span>
+      <span v-else>复制中!</span>
+    </button>
+  </div>
+  <p v-else>您的浏览器不支持剪贴板API</p>
 </template>
 <script setup>
-    import { ref, getCurrentScope } from 'vue'
-    import { useClipboard } from './copy.js'
-    const input = ref('')
-    const { text, isSupported, copied, copy } = useClipboard()
-    console.log(text)// 复制内容
-    console.log(isSupported)// 是否支持复制剪切板api 
-    console.log(copied)// 是否复制完成延迟
-    console.log(copy) // 复制方法
+import { ref, getCurrentScope } from 'vue'
+import { useClipboard } from './copy.js'
+const input = ref('')
+const { text, isSupported, copied, copy } = useClipboard()
+console.log(text) // 复制内容
+console.log(isSupported) // 是否支持复制剪切板api
+console.log(copied) // 是否复制完成延迟
+console.log(copy) // 复制方法
 </script>
+```
 
+使用 shallowReactive 和 markRaw，化响应式性能时，可以使用 shallowReactive，只使顶层响应式，而不递归处理。
+
+```ts
+import { shallowReactive, markRaw } from 'vue'
+
+const rawObject = markRaw({ key: 'value' })
+const shallowObj = shallowReactive({ key: rawObject })
 ```
 
 ## 5. 善于使用getCurrentInstance 获取组件实例
@@ -461,7 +457,7 @@ function useMapState<T>() {
   const rightFixedCount = computed(() => {
     return store.states.rightFixedColumns.value.length
   })
- 
+
   return {
     leftFixedLeafCount,
     rightFixedLeafCount,
@@ -475,7 +471,7 @@ function useMapState<T>() {
 
 ## 6. 善用$attrs
 
-`$attrs` 现在包含了_所有_传递给组件的 attribute，包括 `class` 和 `style`。
+`$attrs` 现在包含了*所有*传递给组件的 attribute，包括 `class` 和 `style`。
 
 通过他，我们可以做组件的`事件以及props`透传
 
@@ -484,24 +480,24 @@ function useMapState<T>() {
 ```vue
 //child.vue
 <template>
-    <div>这是一个标准化组件</div>
-    <input type="text" :value="num" @input="setInput" />
+  <div>这是一个标准化组件</div>
+  <input type="text" :value="num" @input="setInput" />
 </template>
- 
+
 <script>
-import { defineComponent } from "vue";
- 
+import { defineComponent } from 'vue'
+
 export default defineComponent({
-    props: ['num'],
-    emits: ['edit'],
-    setup(props, { emit }) {
-        function setInput(val) {
-            emit('edit', val.target.value)
-        }
-        return {
-            setInput
-        }
+  props: ['num'],
+  emits: ['edit'],
+  setup(props, { emit }) {
+    function setInput(val) {
+      emit('edit', val.target.value)
     }
+    return {
+      setInput,
+    }
+  },
 })
 </script>
 ```
@@ -510,27 +506,27 @@ export default defineComponent({
 
 ```vue
 //parent.vue
- <template>
-    <div>这一层要做一个单独的包装</div>
-    <child v-bind="$attrs" @edit="edit"></child>
+<template>
+  <div>这一层要做一个单独的包装</div>
+  <child v-bind="$attrs" @edit="edit"></child>
 </template>
- 
+
 <script>
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 import child from './child.vue'
 export default defineComponent({
-    components: {
-        child
-    },
-    setup(props, { emit }) {
-        function edit(val) {
-            // 对返回的值做一个包装
-            emit('edit', `${val}time`)
-        }
-        return {
-            edit
-        }
+  components: {
+    child,
+  },
+  setup(props, { emit }) {
+    function edit(val) {
+      // 对返回的值做一个包装
+      emit('edit', `${val}time`)
     }
+    return {
+      edit,
+    }
+  },
 })
 </script>
 ```
@@ -543,7 +539,7 @@ vue3的组件通常情况下使用vue提供的`component` 方法来完成全局�
 
 ```js
 const app = Vue.createApp({})
- 
+
 app.component('component-a', {
   /* ... */
 })
@@ -553,7 +549,7 @@ app.component('component-b', {
 app.component('component-c', {
   /* ... */
 })
- 
+
 app.mount('#app')
 ```
 
@@ -577,8 +573,8 @@ app.mount('#app')
 //plugins/index.js
 export default {
   install: (app, options) => {
-      // 这是插件的内容
-  }
+    // 这是插件的内容
+  },
 }
 ```
 
@@ -600,9 +596,9 @@ index.js中抛出一个组件插件
 // index.js
 import component from './Cmponent.vue'
 const component = {
-    install:function(Vue){
-        Vue.component('component-name',component)
-    }  // 'component-name'这就是后面可以使用的组件的名字，install是默认的一个方法 component-name 是自定义的，我们可以按照具体的需		求自己定义名字
+  install: function (Vue) {
+    Vue.component('component-name', component)
+  }, // 'component-name'这就是后面可以使用的组件的名字，install是默认的一个方法 component-name 是自定义的，我们可以按照具体的需		求自己定义名字
 }
 // 导出该组件
 export default component
@@ -612,9 +608,9 @@ export default component
 
 ```js
 // 引入组件
-import Component from './index.js'; 
+import Component from './index.js'
 // 全局挂载utils
-Vue.use(Component);
+Vue.use(Component)
 ```
 
 上述案例中，就是一个简单的优雅的组件注册方式，大家可以发现包括`element-plus、vant` 等组件都是用如此方式注册组件。
@@ -634,14 +630,14 @@ Vue.use(Component);
 
 ```vue
 <script setup>
-	import { ref,h } from 'vue'
-	const msg = ref('Hello World!')
-	const dynode = () => h('div',msg.value);
+import { ref, h } from 'vue'
+const msg = ref('Hello World!')
+const dynode = () => h('div', msg.value)
 </script>
 <template>
-    <dynode />
-  	<input v-model="msg">
-</template>	
+  <dynode />
+  <input v-model="msg" />
+</template>
 ```
 
 如此一来，我们就能在语法糖中返回渲染函数了。
@@ -652,22 +648,22 @@ Vue.use(Component);
 
 ```vue
 <template>
-    <child v-model:title="pageTitle"></child>
+  <child v-model:title="pageTitle"></child>
 </template>
- 
+
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from 'vue'
 import child from './child.vue'
 export default defineComponent({
-    components: {
-        child
-    },
-    setup(props, { emit }) {
-        const pageTitle = ref('这是v-model')
-        return {
-            pageTitle
-        }
+  components: {
+    child,
+  },
+  setup(props, { emit }) {
+    const pageTitle = ref('这是v-model')
+    return {
+      pageTitle,
     }
+  },
 })
 </script>
 ```
@@ -676,24 +672,24 @@ export default defineComponent({
 
 ```vue
 <template>
-    <div>{{ title }}</div>
-    <input type="text" @input="setInput" />
+  <div>{{ title }}</div>
+  <input type="text" @input="setInput" />
 </template>
- 
+
 <script>
-import { defineComponent } from "vue";
- 
+import { defineComponent } from 'vue'
+
 export default defineComponent({
-    props: ['title'],
-    emits: ['update:title'],
-    setup(props, { emit }) {
-        function setInput(val) {
-            emit('update:title', val.target.value)
-        }
-        return {
-            setInput
-        }
+  props: ['title'],
+  emits: ['update:title'],
+  setup(props, { emit }) {
+    function setInput(val) {
+      emit('update:title', val.target.value)
     }
+    return {
+      setInput,
+    }
+  },
 })
 </script>
 ```

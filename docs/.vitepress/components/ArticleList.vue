@@ -9,7 +9,7 @@ import { data as posts } from '../utils/posts.data'
 const router = useRouter()
 
 const timelineList = posts
-  .filter((item: Record<string, any>) => !item.url.includes('/文档/'))
+  .filter((item: Record<string, any>) => !item.url.includes('/知识库/'))
   .map((item: Record<string, any>) => ({
     ...item,
     unixDate: dayjs(item.frontmatter.date).unix(),

@@ -59,15 +59,15 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
-      { text: '随笔录', link: '/文档/comment' },
-      { text: '关于', link: '/文档/about' },
+      { text: '随笔录', link: '/知识库/comment' },
+      { text: '关于', link: '/知识库/about' },
       {
         text: '推荐',
         items: [
           {
             items: [
-              { text: '网页精灵', link: '/笔记/webPage' },
-              { text: '工具精灵', link: '/笔记/tools' },
+              { text: '网页精灵', link: '/常用/webPage' },
+              { text: '工具精灵', link: '/常用/tools' },
             ],
           },
         ],

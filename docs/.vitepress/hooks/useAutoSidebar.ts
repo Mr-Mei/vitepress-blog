@@ -3,10 +3,10 @@ import { generateSidebar } from 'vitepress-sidebar'
 export const useAutoSidebar = () => {
   // 定义过滤条件
   const filterConfig = [
-    { text: '随笔录', link: '/文档/comment' },
-    { text: '关于我', link: '/文档/about' },
-    { text: 'api examples', link: '/文档/api-examples' },
-    { text: 'markdown examples', link: '/文档/markdown-examples' },
+    { text: '随笔录', link: '/知识库/comment' },
+    { text: '关于我', link: '/知识库/about' },
+    { text: 'api examples', link: '/知识库/api-examples' },
+    { text: 'markdown examples', link: '/知识库/markdown-examples' },
   ]
 
   // 判断某项是否需要过滤
