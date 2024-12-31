@@ -77,5 +77,6 @@ export default defineConfig({
     sidebar: autoSidebar(),
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/Mr-Mei' }],
+    outlineTitle: '文章目录',
   },
 })
