@@ -28,8 +28,7 @@
 <style scoped>
 /* 手风琴容器样式 */
 .accordion {
-  max-width: 600px;
-  margin: 0 auto;
+  width: 300px;
   background: #fff;
   overflow: hidden;
 }
