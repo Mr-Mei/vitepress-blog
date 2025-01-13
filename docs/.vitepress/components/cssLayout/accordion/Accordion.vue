@@ -24,6 +24,11 @@
     </details>
   </div>
 </template>
+<script>
+export default {
+  name: '可折叠效果布局（手风琴）',
+}
+</script>
 
 <style scoped>
 /* 手风琴容器样式 */

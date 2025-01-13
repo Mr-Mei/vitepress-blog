@@ -29,7 +29,11 @@
     </Collapse>
   </div>
 </template>
-
+<script>
+export default {
+  name: '可折叠效果布局（手风琴）',
+}
+</script>
 <script setup>
 import Collapse from './Collapse.vue'
 import CollapseItem from './CollapseItem.vue'

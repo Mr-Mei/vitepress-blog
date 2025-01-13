@@ -5,6 +5,11 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  name: '元素水平垂直居中',
+}
+</script>
 <style scoped>
 .main {
   --size: 200px; /* 容器大小 */

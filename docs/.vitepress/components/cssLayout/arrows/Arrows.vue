@@ -8,6 +8,11 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  name: '不同方向的箭头',
+}
+</script>
 <style scoped>
 .arrow-layout {
   --size: 200px; /* 容器大小 */
