@@ -45,18 +45,18 @@ const activeItems = ref(['1', '2']) // 自由模式下的活动项
 
 const activeItemData = ref([
   {
-    title: 'Title 1',
-    content: 'Content 1',
+    title: '标题 1',
+    content: '内容 1',
     name: '1',
   },
   {
-    title: 'Title 2',
-    content: 'Content 2',
+    title: '标题 2',
+    content: '内容 2',
     name: '2',
   },
   {
-    title: 'Title 3',
-    content: 'Content 3',
+    title: '标题 3',
+    content: '内容 3',
     name: '3',
   },
 ])

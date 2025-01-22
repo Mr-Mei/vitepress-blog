@@ -1,3 +1,7 @@
+/**
+ * 动态生成模板目录下的内容
+ */
+
 import { defineAsyncComponent, markRaw } from 'vue'
 
 // Glob import Vue components

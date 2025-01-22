@@ -12,7 +12,7 @@ export default {
 </script>
 <style scoped>
 .main {
-  --size: 200px; /* 容器大小 */
+  --size: 300px; /* 容器大小 */
   --border-color: #ccc; /* 边框颜色 */
 
   width: var(--size);
@@ -21,10 +21,11 @@ export default {
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border-color);
+  background-color: #fff;
 }
 .avatar-wrap {
-  width: 50%;
-  height: 50%;
+  width: 40%;
+  height: 40%;
   border-radius: 50%;
   overflow: hidden;
 }

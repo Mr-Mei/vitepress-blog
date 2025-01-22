@@ -15,11 +15,12 @@ export default {
 </script>
 <style scoped>
 .arrow-layout {
-  --size: 200px; /* 容器大小 */
+  --size: 300px; /* 容器大小 */
   --border-color: #ccc; /* 边框颜色 */
-  --spacing: 50px; /* 内边距大小 */
-  --spacer-size: 60px; /* 间隔元素大小 */
+  --spacing: 90px; /* 内边距大小 */
+  --spacer-size: 35px; /* 间隔元素大小 */
   --spacer-offset: -10px; /* 间隔元素与边框的偏移 */
+  --bg-color: #fff;
 
   width: var(--size);
   height: var(--size);
@@ -29,6 +30,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--bg-color);
 }
 
 .arrow {
@@ -37,7 +39,6 @@ export default {
   border: 2px solid var(--border-color);
   position: relative;
   transform: rotate(45deg); /* 菱形旋转 */
-  background-color: #fff;
 }
 
 /* 空白间隔元素的通用样式 */
@@ -45,7 +46,7 @@ export default {
   position: absolute;
   width: var(--spacer-size);
   height: var(--spacer-size);
-  background-color: #fff;
+  background-color: var(--bg-color);
 }
 
 /* 四个方向的空白间隔 */
