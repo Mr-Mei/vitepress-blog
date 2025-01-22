@@ -4,7 +4,7 @@
 
 查看效果：[dddhl.cn](https://www.dddhl.cn)
 
-<img src="./docs/public/index.png" style="border:1px solid #efefef" />
+<img src="./docs/public/index.jpg" style="border:1px solid #efefef" />
 
 ## 项目特点
 

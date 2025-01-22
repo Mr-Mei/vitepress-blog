@@ -12,7 +12,7 @@ This page demonstrates some of the built-in markdown extensions provided by Vite
 
 ## 测试图片放大
 
-![test](/index.png)
+![test](/index.jpg)
 
 ## Syntax Highlighting
 
