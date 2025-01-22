@@ -1,8 +1,10 @@
 ---
 title: '随笔录'
 date: 2024-12-26
+sidebar: false
 prev: false
 next: false
+outline: false
 ---
 
 # 随笔录
