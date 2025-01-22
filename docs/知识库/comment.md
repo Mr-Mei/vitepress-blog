@@ -1,7 +1,7 @@
 ---
 title: '随笔录'
 date: 2024-12-26
-sidebar: false
+sidebar: true
 prev: false
 next: false
 outline: false
