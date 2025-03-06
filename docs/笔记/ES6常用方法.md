@@ -692,4 +692,4 @@ export {name,age};
 
 ## ES6思维导图
 
-![img](blob:https://uv4fs8d5x5w.feishu.cn/b24a097a-ecf0-477b-8a85-9812f5f1a17f)
+![img](/assets/images/Note/mindMap.png)
