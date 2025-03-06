@@ -692,4 +692,4 @@ export {name,age};
 
 ## ES6思维导图
 
-![img](https://uv4fs8d5x5w.feishu.cn/space/api/box/stream/download/asynccode/?code=M2U1MDZkOTFlMDgxNDhjMTIyYTQ5MjU5ZDNhZGVlMzJfS2lRVEcyRkJuNjgzNnN3VVJiSXgzcWpXR2hPdTB2R1NfVG9rZW46UDFsdmJzN1JUb2xnaHl4czN2QmNxTUh4blRkXzE3NDEyMjc2ODA6MTc0MTIzMTI4MF9WNA)
+![img](blob:https://uv4fs8d5x5w.feishu.cn/b24a097a-ecf0-477b-8a85-9812f5f1a17f)
