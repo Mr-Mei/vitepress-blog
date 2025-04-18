@@ -34,15 +34,17 @@ console.log(res) // one
 
 ```ts
 const a = 1
-const map = {
-  '1': 'one',
-  '2': 'two',
-  // ...
+const mapping = {
+  1: 'one',
+  2: 'two',
+  // ...超级多的键值对
 }
-let res = map[a]
+
+const res = mapping[a] ?? 'unknown'
+console.log(res) // one
 ```
 
-## 2.合理使用 数组 + includes
+## 2. 合理使用数组 + includes
 
 ### 2.1 多个或进行 if 判断(初始)
 
@@ -153,15 +155,9 @@ const fn = () => {
 ```ts
 const a = 1
 const fn = () => {
-  if (a === 1) {
-    return 1
-  }
-  if (a === 2) {
-    return 2
-  }
-  if (a === 3) {
-    return 3
-  }
+  if (a === 1) return 1
+  if (a === 2) return 2
+  if (a === 3) return 3
 }
 ```
 
@@ -178,7 +174,7 @@ if (key === null) {
 ### 7.2 自动转布尔值(优化)
 
 ```ts
-if (key) {
+if (!key) {
   // 进行对应操作
 }
 ```
@@ -187,8 +183,6 @@ if (key) {
 
 ### 8.1 初始
 
-如果 selects 是不需要响应式的，但是你放在这里，会进行响应式的处理，浪费性能
-
 ```ts
   data() {
     return {
@@ -196,82 +190,65 @@ if (key) {
         {label: '选项一', value: 1},
         {label: '选项二', value: 2},
         {label: '选项三', value: 3}
-    ]
+      ]
     };
   }
 ```
 
 ### 8.2 优化
 
-放在外面，则不会进行响应式处理，节省性能
-
 ```ts
   data() {
-    // 放在这
     this.selects = [
       {label: '选项一', value: 1},
       {label: '选项二', value: 2},
       {label: '选项三', value: 3}
     ]
-    return { };
+    return {}
   }
 ```
 
 ## 9. 定时器、绑定事件的清除
 
 ```ts
-export default{
-  data(){
-    timer:null
+export default {
+  data() {
+    return {
+      timer: null,
+    }
   },
-  mounted(){
-      this.timer = setInterval(()=>{
-      //具体执行内容
-      console.log('1');
-        },1000);
-  }
-  beforeDestory(){
-    clearInterval(this.timer);
-    this.timer = null;
-  }
+  mounted() {
+    this.timer = setInterval(() => {
+      console.log('1')
+    }, 1000)
+  },
+  beforeDestroy() {
+    clearInterval(this.timer)
+    this.timer = null
+  },
 }
 ```
 
 ## 10. 小程序多次 setData 合并
 
-小程序不像 React，小程序的 setData 并没有做多次修改自动合并，所以需要我们手动合并
-
 ### 10.1 初始
 
 ```ts
-this.setState({
-  name: 'lhd',
-})
-if (confition1) {
-  this.setState({
-    age: 22,
-  })
+this.setData({ name: 'lhd' })
+if (condition1) {
+  this.setData({ age: 22 })
 }
 if (condition2) {
-  this.setState({
-    gender: '男',
-  })
+  this.setData({ gender: '男' })
 }
 ```
 
 ### 10.2 优化
 
 ```ts
-const model = {
-  name: 'lhd',
-}
-if (confition1) {
-  model.age = 22
-}
-if (condition2) {
-  model.gender = '男'
-}
-// 合并更新
+const model = { name: 'lhd' }
+if (condition1) model.age = 22
+if (condition2) model.gender = '男'
 this.setData(model)
 ```
 
@@ -280,9 +257,6 @@ this.setData(model)
 ### 11.1 初始
 
 ```ts
-// test2 test3 都是函数
-// 值为1时调用 test1(),否则调用 test2()
-var temp = 1
 if (temp == '1') {
   test1()
 } else {
@@ -293,7 +267,7 @@ if (temp == '1') {
 ### 11.2 优化
 
 ```ts
-var temp = 1(temp == '1' ? test1 : test2)()
+;(temp == '1' ? test1 : test2)()
 ```
 
 ## 12. 给多个变量赋值
@@ -311,4 +285,71 @@ test3 = 3
 
 ```ts
 let [test1, test2, test3] = [1, 2, 3]
+```
+
+## 13. 使用可选链操作符 (Optional Chaining)
+
+### 13.1 初始
+
+```ts
+if (obj && obj.child && obj.child.value) {
+  console.log(obj.child.value)
+}
+```
+
+### 13.2 优化
+
+```ts
+console.log(obj?.child?.value)
+```
+
+## 14. 空值合并运算符 ??
+
+### 14.1 初始
+
+```ts
+let val = obj.value !== undefined && obj.value !== null ? obj.value : 'default'
+```
+
+### 14.2 优化
+
+```ts
+let val = obj.value ?? 'default'
+```
+
+## 15. Object.entries 遍历对象
+
+### 15.1 初始
+
+```ts
+const obj = { a: 1, b: 2, c: 3 }
+for (let key in obj) {
+  if (obj.hasOwnProperty(key)) {
+    console.log(key, obj[key])
+  }
+}
+```
+
+### 15.2 优化
+
+```ts
+Object.entries(obj).forEach(([key, value]) => {
+  console.log(key, value)
+})
+```
+
+## 16. 使用模板字符串
+
+### 16.1 初始
+
+```ts
+const name = 'Tom'
+const greeting = 'Hello, ' + name + '!'
+```
+
+### 16.2 优化
+
+```ts
+const name = 'Tom'
+const greeting = `Hello, ${name}!`
 ```
